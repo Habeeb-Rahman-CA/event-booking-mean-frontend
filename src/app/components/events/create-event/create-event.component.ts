@@ -22,6 +22,7 @@ export class CreateEventComponent {
   eventService = inject(EventService)
 
   eventData: IEvent = {
+    _id: '',
     title: '',
     description: '',
     date: '',
@@ -37,6 +38,7 @@ export class CreateEventComponent {
         this.successMessage = 'Event created succesfully'
         this.errorMessage = ''
         this.eventData = {
+          _id: '',
           title: '',
           description: '',
           date: new Date(),

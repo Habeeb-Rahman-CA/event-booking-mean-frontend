@@ -4,7 +4,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { IEvent } from '../../../models/event';
 import { EventService } from '../../../services/event/event.service';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
@@ -26,8 +26,13 @@ export class EventListComponent implements OnInit {
 
   getEvents(){
     this.eventService.getEvents().subscribe({
-      next: (res: IEvent[]) => (this.events = res),
-      error: (err) => console.error(err)
+      next: (res: IEvent[]) => {
+        this.events = res
+      },
+      error: (err) => {
+        console.error(err)
+        alert('Failed to fetch data')
+      }
     })
   }
 

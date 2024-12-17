@@ -26,9 +26,13 @@ export class RegisterComponent {
   onRegister() {
     this.authService.register(this.username, this.password).subscribe({
       next: () => {
+        alert('You registered successfully')
         this.router.navigate(['/login'])
       },
-      error: (err) => console.error(err)
+      error: (err) => {
+        console.error(err)
+        alert('You registered successfully')
+      }
     })
   }
 }

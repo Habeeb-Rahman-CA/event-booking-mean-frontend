@@ -27,9 +27,13 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe({
       next:(res: any) => {
         localStorage.setItem('token', res.token)
+        alert('You are successfully logged in')
         this.router.navigate(['/events'])
       },
-      error: (err) => console.error(err)
+      error: (err) => {
+        console.error(err)
+        alert('You failed to logged in')
+      }
     })
   }
 }
