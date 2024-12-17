@@ -1,1 +1,33 @@
-<p>create-event works!</p>
+<div class="w-1/2 mx-auto mt-20">
+    <p-card class=" mx-auto p-6  rounded shadow">
+        <h2 class="text-2xl font-bold mb-4 text-center">Create New Event</h2>
+    
+        <p *ngIf="successMessage" class="text-green-600 mb-4">{{ successMessage }}</p>
+        <p *ngIf="errorMessage" class="text-red-600 mb-4">{{ errorMessage }}</p>
+    
+        <form (ngSubmit)="onSubmit()" class="space-y-4">
+            <p-iftalabel class="mb-4">
+                <label class="block mb-1 font-medium">Event Title</label>
+                <input pInputText [(ngModel)]="eventData.title" name="title" required class="w-full">
+            </p-iftalabel>
+    
+            <p-iftalabel class="mb-4">
+                <label class="block mb-1 font-medium">Description</label>
+                <input pInputText [(ngModel)]="eventData.description" name="description" rows="3" class="w-full">
+            </p-iftalabel>
+    
+            <p-iftalabel class="mb-4">
+                <label class="block mb-1 font-medium">Date</label>
+                <input pInputText [(ngModel)]="eventData.date" name="date" required class="w-full">
+            </p-iftalabel>
+    
+            <p-iftalabel class="mb-4">
+                <label class="block mb-1 font-medium">Location</label>
+                <input pInputText [(ngModel)]="eventData.location" name="location" required class="w-full">
+            </p-iftalabel>
+    
+            <button type="submit" pButton label="Create Event"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"></button>
+        </form>
+    </p-card>  
+</div>

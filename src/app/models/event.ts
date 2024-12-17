@@ -1,9 +1,9 @@
 export interface IEvent {
-    _id: string;
+    _id?: string;
     title: string;
     description: string;
-    date: Date;
+    date: Date | string;
     location: string;
-    createdBy: string;
-    attendees: string[];
+    createdBy?: string;
+    attendees?: string[];
 }

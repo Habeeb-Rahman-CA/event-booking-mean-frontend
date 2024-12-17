@@ -20,6 +20,11 @@ export class EventService {
     return this.http.get<IEvent>(`${this.baseUrl}/${id}`)
   }
 
+  createEvent(eventData: IEvent): Observable<IEvent> {
+    const token = localStorage.getItem('token')
+    return this.http.post<IEvent>(`${this.baseUrl}`, eventData, {headers:{Authorization: token || ''}})
+  }
+
   bookEvent(id: string) {
     const token = localStorage.getItem('token')
     return this.http.post<IEvent>(`${this.baseUrl}/${id}/book`, {}, { headers: { Authorization: token || '' } })
