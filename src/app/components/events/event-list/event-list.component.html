@@ -1,5 +1,5 @@
-<div class="container mx-auto w-11/12 m-8">
-    <p-table [value]="events" [paginator]="true" [rows]="5" >
+<div class="container mx-auto w-11/12 mt-12">
+    <p-table [value]="events" [paginator]="true" [rows]="7" >
         <ng-template pTemplate="caption">
             <div class="flex items-center justify-between">
                 <span class="text-xl font-bold">Upcoming Events</span>
@@ -26,6 +26,6 @@
         </ng-template>
     </p-table>
     <p-dialog header="Add New Event" [modal]="true" [(visible)]="visible" [position]="position" [style]="{ width: '25rem' }">
-        <app-create-event></app-create-event>
+        <app-create-event (refreshEvents)="getEvents()" [visible]="visible" (visibleChange)="onVisibleChange($event)"></app-create-event>
     </p-dialog>
 </div>

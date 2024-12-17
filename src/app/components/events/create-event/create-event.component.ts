@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, input, Input, Output } from '@angular/core';
 import { IEvent } from '../../../models/event';
 import { EventService } from '../../../services/event/event.service';
 import { CommonModule } from '@angular/common';
@@ -13,13 +13,17 @@ import { Card } from 'primeng/card';
 @Component({
   selector: 'app-create-event',
   standalone: true,
-  imports: [CommonModule, FormsModule, ButtonModule, InputTextModule, CalendarModule, TextareaModule, IftaLabelModule, Card],
+  imports: [CommonModule, FormsModule, ButtonModule, InputTextModule, CalendarModule, TextareaModule, IftaLabelModule],
   templateUrl: './create-event.component.html',
   styleUrl: './create-event.component.css'
 })
 export class CreateEventComponent {
 
   eventService = inject(EventService)
+
+  @Input() visible: boolean = false
+  @Output() visibleChange = new EventEmitter<boolean>();
+  @Output() refreshEvents: EventEmitter<void> = new EventEmitter<void>()
 
   eventData: IEvent = {
     _id: '',
@@ -29,25 +33,24 @@ export class CreateEventComponent {
     location: ''
   }
 
-  successMessage = ''
   errorMessage = ''
 
   onSubmit() {
     this.eventService.createEvent(this.eventData).subscribe({
       next: () => {
-        this.successMessage = 'Event created succesfully'
-        this.errorMessage = ''
+        this.visible = false
+        this.visibleChange.emit(this.visible)
         this.eventData = {
           _id: '',
           title: '',
           description: '',
-          date: new Date(),
+          date: '',
           location: ''
         }
+        this.refreshEvents.emit()
       },
-      error: (err) =>{
-        this.errorMessage = err.error.message || "Failed to create this event"
-        this.successMessage = ''
+      error: (err) => {
+        this.errorMessage = err.error.message || "All Fields are required"
       }
     })
   }

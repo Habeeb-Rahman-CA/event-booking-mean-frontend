@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
@@ -24,6 +24,10 @@ export class EventListComponent implements OnInit {
   
   visible: boolean = false
   position: any
+
+  onVisibleChange(visible: boolean){
+    this.visible = visible
+  }
 
   ngOnInit(): void {
       this.getEvents()

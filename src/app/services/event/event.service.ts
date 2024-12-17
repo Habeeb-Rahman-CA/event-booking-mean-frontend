@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IEvent } from '../../models/event';
 import { Observable } from 'rxjs';
@@ -22,12 +22,14 @@ export class EventService {
 
   createEvent(eventData: IEvent): Observable<IEvent> {
     const token = localStorage.getItem('token')
-    return this.http.post<IEvent>(`${this.baseUrl}`, eventData, {headers:{Authorization: token || ''}})
+    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`)
+    return this.http.post<IEvent>(`${this.baseUrl}`, eventData, { headers: header })
   }
 
   bookEvent(id: string) {
     const token = localStorage.getItem('token')
-    return this.http.post<IEvent>(`${this.baseUrl}/${id}/book`, {}, { headers: { Authorization: token || '' } })
+    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`)
+    return this.http.post<IEvent>(`${this.baseUrl}/${id}/book`, {}, { headers: header })
   }
 
 }
