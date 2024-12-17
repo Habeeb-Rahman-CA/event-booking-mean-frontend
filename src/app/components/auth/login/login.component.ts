@@ -6,12 +6,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { Card } from 'primeng/card';
 import { AuthService } from '../../../services/auth/auth.service';
 import { FloatLabel } from 'primeng/floatlabel';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, InputTextModule, FloatLabel, Card],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, InputTextModule, FloatLabel, Card, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -32,5 +32,4 @@ export class LoginComponent {
       error: (err) => console.error(err)
     })
   }
-
 }
