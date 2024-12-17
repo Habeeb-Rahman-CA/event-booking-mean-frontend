@@ -1,1 +1,25 @@
-<p>event-list works!</p>
+<div class="container mx-auto">
+    <h2 class="text-2xl font-bold mb-4">Events</h2>
+    <p-table [value]="events" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-event>
+            @for (event of events; track $index) {
+                <tr>
+                    <td>{{ event.title}}</td>
+                    <td>{{ event.date | date }}</td>
+                    <td>{{ event.location }}</td>
+                    <td>
+                        <button pButton label="Book" (click)="onBook(event._id)"></button>
+                    </td>
+                </tr>
+            }
+        </ng-template>
+    </p-table>
+</div>
