@@ -3,7 +3,7 @@
         <ng-template pTemplate="caption">
             <div class="flex items-center justify-between">
                 <span class="text-xl font-bold">Upcoming Events</span>
-                <p-button icon="pi pi-plus" rounded raised />
+                <p-button icon="pi pi-plus" rounded raised (click)="showDialog('topright')" severity="secondary"/>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -25,4 +25,7 @@
                 </tr>
         </ng-template>
     </p-table>
+    <p-dialog header="Add New Event" [modal]="true" [(visible)]="visible" [position]="position" [style]="{ width: '25rem' }">
+        <app-create-event></app-create-event>
+    </p-dialog>
 </div>

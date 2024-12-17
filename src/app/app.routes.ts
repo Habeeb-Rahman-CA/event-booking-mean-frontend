@@ -10,6 +10,5 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'events', component: EventListComponent},
-    {path: 'events/:id', component: EventDetailsComponent},
-    {path: 'create-event', component: CreateEventComponent}
+    {path: 'events/:id', component: EventDetailsComponent}
 ];
