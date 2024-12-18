@@ -4,11 +4,13 @@ import { EventService } from '../../../services/event/event.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-event-details',
   standalone: true,
-  imports: [CommonModule, ButtonModule],
+  imports: [CommonModule, ButtonModule, TableModule, CardModule],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })
@@ -20,17 +22,20 @@ export class EventDetailsComponent implements OnInit {
   eventId: string = ''
   eventDetails: IEvent | null = null
   bookingMessage: string = ''
+  hasBooked: boolean = false
 
   ngOnInit(): void {
       this.route.params.subscribe((params) =>{
-        this.eventId = params['_id']
+        this.eventId = params['id']
         this.getEventDetails()
       })
   }
 
   getEventDetails(){
     this.eventService.getEventById(this.eventId).subscribe({
-      next: (res: IEvent) => (this.eventDetails = res),
+      next: (res: IEvent) => {
+        this.eventDetails = res
+      },
       error: (err) => console.error(err)
     })
   }
@@ -39,6 +44,7 @@ export class EventDetailsComponent implements OnInit {
     this.eventService.bookEvent(this.eventId).subscribe({
       next:()=>{
         this.bookingMessage = 'Booking Successful'
+        this.hasBooked = true
       },
       error: (err) => {
         this.bookingMessage = err.error.message || 'Booking Failed'

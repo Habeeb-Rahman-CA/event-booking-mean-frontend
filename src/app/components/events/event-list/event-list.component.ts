@@ -51,7 +51,12 @@ export class EventListComponent implements OnInit {
   }
 
   onBook(id: string){
-    this.router.navigate(['/events', id])
+    this.eventService.getEventById(id).subscribe({
+      next: () => {
+        this.router.navigate(['/events', id])
+      },
+      error: (err) => console.error(err)
+    })
   }
 
 }

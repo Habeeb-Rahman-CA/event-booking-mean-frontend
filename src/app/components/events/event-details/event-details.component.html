@@ -1,23 +1,32 @@
-<div class=" mx-auto p-6  rounded-lg">
-    @if (eventDetails) {
-    <h2 class="text-3xl font-bold mb-4">{{ eventDetails.title }}</h2>
-    <p class="text-gray-700 mb-2">
-        <strong>Date:</strong> {{ eventDetails.date | date }}
-    </p>
-    <p class="text-gray-700 mb-2">
-        <strong>Location:</strong> {{ eventDetails.location }}
-    </p>
-    <p class="text-gray-700 mb-2">
-        <strong>Description:</strong> {{ eventDetails.description }}
-    </p>
-    <button (click)="bookNow()" pButton label="Book Now"
-        class="mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
-        Book Now
-    </button>
-    <p *ngIf="bookingMessage" class="mt-4 text-center text-green-600">
-        {{ bookingMessage }}
-    </p>
-    } @else {
-    <h1 class="text-3xl font-bold mb-4">No Details Available</h1>
-    }
+<div class="w-1/2 mx-auto mt-8">
+    <p-card>
+        <div class="mx-auto p-6  rounded-lg  w-1/2 text-center">
+            @if (eventDetails) {
+            <h2 class="text-3xl font-bold mb-4">{{ eventDetails.title }}</h2>
+            <p class="mb-2">
+                <strong>Date:</strong> {{ eventDetails.date | date }}
+            </p>
+            <p class="mb-2">
+                <strong>Location:</strong> {{ eventDetails.location }}
+            </p>
+            <p class="mb-2">
+                <strong>Description:</strong> {{ eventDetails.description }}
+            </p>
+            <p class="mb-2">
+                <p-table>
+                    
+                </p-table>
+            </p>
+
+            <button [disabled]="hasBooked" (click)="bookNow()" pButton label="Book Now"
+                class="mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"></button>
+
+            <p *ngIf="bookingMessage" class="mt-4 text-center text-green-600">
+                {{ bookingMessage }}
+            </p>
+            } @else {
+            <h1 class="text-3xl font-bold mb-4">No Details Available</h1>
+            }
+        </div>
+    </p-card>
 </div>
