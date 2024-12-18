@@ -1,29 +1,38 @@
+<p-toast/>
 <div class="w-1/2 mx-auto mt-8">
     <p-card>
-        <div class="mx-auto p-6  rounded-lg  w-1/2 text-center">
+        <div class="mx-auto p-6  rounded-lg">
             @if (eventDetails) {
-            <h2 class="text-3xl font-bold mb-4">{{ eventDetails.title }}</h2>
-            <p class="mb-2">
-                <strong>Date:</strong> {{ eventDetails.date | date }}
-            </p>
-            <p class="mb-2">
-                <strong>Location:</strong> {{ eventDetails.location }}
-            </p>
-            <p class="mb-2">
-                <strong>Description:</strong> {{ eventDetails.description }}
-            </p>
-            <p class="mb-2">
-                <p-table>
-                    
-                </p-table>
-            </p>
+            <div class="flex items-center justify-between">
+                <h2 class="text-4xl font-bold">{{ eventDetails.title }}</h2>
+                <div class="text-sm">
+                    <p>{{ eventDetails.date | date }}</p>
+                    <p>{{ eventDetails.location }}</p>
+                </div>
+            </div>
+            <p-divider />
+            <p class="mb-2">{{ eventDetails.description }}</p>
 
-            <button [disabled]="hasBooked" (click)="bookNow()" pButton label="Book Now"
-                class="mt-4 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"></button>
+            <p-button [disabled]="hasBooked" (click)="bookNow()" pRipple label="Book Now"
+                class="mt-4 text-white py-2 px-4 rounded"></p-button>
+            <p-divider />
 
-            <p *ngIf="bookingMessage" class="mt-4 text-center text-green-600">
-                {{ bookingMessage }}
-            </p>
+            @if (hasBooked) {
+            <div class="flex justify-between items-center">
+                <img src="WhatsApp Image 2024-12-18 at 14.35.35_83a39880.jpg" class="w-80 h-80 mt-4">
+                <div class="flex flex-col w-full ml-4">
+                    <p class="text-center text-gray-600">Online payments are now unavailable!</p>
+                    <button pButton label="Scan & Pay"
+                        class="mt-4 text-white py-2 px-4 rounded w-full" severity="secondary" [outlined]="true" disabled></button>
+                    <button pButton label="RazorPay"
+                        class="mt-4 text-white py-2 px-4 rounded w-full"severity="secondary" [outlined]="true" disabled></button>
+                    <button pButton label="Other"
+                        class="mt-4 text-white py-2 px-4 rounded w-full" severity="secondary" [outlined]="true" disabled></button>
+                    <button pButton label="Pay Later"
+                        class="mt-4 text-white py-2 px-4 rounded w-full" [outlined]="true" routerLink="/events"></button>
+                </div>
+            </div>
+            }
             } @else {
             <h1 class="text-3xl font-bold mb-4">No Details Available</h1>
             }

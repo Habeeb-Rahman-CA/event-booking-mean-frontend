@@ -32,4 +32,10 @@ export class EventService {
     return this.http.post<IEvent>(`${this.baseUrl}/${id}/book`, {}, { headers: header })
   }
 
+  cancelEvent(id: string){
+    const token = localStorage.getItem('token')
+    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`)
+    return this.http.delete(`${this.baseUrl}/${id}`, {headers: header})
+  }
+
 }
