@@ -1,4 +1,4 @@
-<p-toast/>
+<p-toast />
 <div class="w-1/2 mx-auto mt-8">
     <p-card>
         <div class="mx-auto p-6  rounded-lg">
@@ -18,19 +18,18 @@
             <p-divider />
 
             @if (hasBooked) {
-            <div class="flex justify-between items-center">
-                <img src="WhatsApp Image 2024-12-18 at 14.35.35_83a39880.jpg" class="w-80 h-80 mt-4">
-                <div class="flex flex-col w-full ml-4">
-                    <p class="text-center text-gray-600">Online payments are now unavailable!</p>
-                    <button pButton label="Scan & Pay"
-                        class="mt-4 text-white py-2 px-4 rounded w-full" severity="secondary" [outlined]="true" disabled></button>
-                    <button pButton label="RazorPay"
-                        class="mt-4 text-white py-2 px-4 rounded w-full"severity="secondary" [outlined]="true" disabled></button>
-                    <button pButton label="Other"
-                        class="mt-4 text-white py-2 px-4 rounded w-full" severity="secondary" [outlined]="true" disabled></button>
-                    <button pButton label="Pay Later"
-                        class="mt-4 text-white py-2 px-4 rounded w-full" [outlined]="true" routerLink="/events"></button>
-                </div>
+            <div class="flex flex-col w-full ml-4">
+                <p class="text-center text-gray-600">Online payments are now unavailable!</p>
+                <button pButton label="Scan & Pay" (click)="showDialog()"
+                    class="mt-4 text-white py-2 px-4 rounded w-full" severity="secondary" [outlined]="true"></button>
+                <p-dialog header="Scan and Pay" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+                    <img src="WhatsApp Image 2024-12-18 at 14.35.35_83a39880.jpg" alt="">
+                </p-dialog>
+                    <div #paymentRef></div>
+                <button pButton label="Other" class="mt-4 text-white py-2 px-4 rounded w-full" severity="secondary"
+                    [outlined]="true" disabled></button>
+                <button pButton label="Pay Later" class="mt-4 text-white py-2 px-4 rounded w-full" [outlined]="true"
+                    routerLink="/events"></button>
             </div>
             }
             } @else {
